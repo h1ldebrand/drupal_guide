@@ -1,0 +1,5 @@
+name: "Hello world(FORM API)"
+description: "Тренировка навыков создание своей формы. Разбор FORM API"
+type: module
+core: 8.x
+configure: collect_phone.admin_settings

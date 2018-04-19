@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Хуки</title>
+    <style>
+        body{
+            background-color: #eee;
+        }
+        span.implements{
+            color: green;
+            font-weight: normal;
+        }
+        span.comment{
+            font-weight: normal;
+            color: #777;
+        }
+        li{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Хуки</h1>
+    <ol>
+        <li>Создание шаблона
+            <pre>
+         <span class="implements">/**
+         * Implements hook_theme();
+         */</span>
+
+        function hook_theme($existing, $type, $theme, $path){
+            return [
+                'header' => [
+                    'variables' => [
+                        'example' => Null,
+                    ],
+                    'path' => $path . '/templates/includes',
+                ],
+            ];
+        }
+            </pre>
+        </li>
+        <li>Создание переопределение для шаблона
+            <pre>
+         <span class="implements">/**
+         * Implements hook_theme_suggestions_HOOK_alter().
+         */</span>
+
+        function hook_theme_suggestions_HOOK_alter(array &$suggestions, array $variables) {
+            <span class="comment">//code</span>
+
+            $suggestions[] = 'HOOK__' . $some_item;
+        }
+            </pre>
+        </li>
+        <li>Изменение формы
+            <pre>
+         <span class="implements">/**
+         * Implements hook_form_alter().
+         */</span>
+         function hook_form_alter(&$form, Drupal\Core\Form\FormStateInterface &$form_state, $form_id){
+
+            if($form_id == 'form_id'){
+                <span class="comment">//code</span>
+            }
+
+        }
+            </pre>
+        </li>
+        <li>Изменение формы c указанным ID
+            <pre>
+        <span class="implements">/**
+         * Implements hook_form_FORM_ID_alter()
+         */</span>
+
+        function hook_form_FORM_ID_alter(&$form, Drupal\Core\Form\FormStateInterface &$form_state, $form_id){
+
+            $form['field_name']['widget'][0]
+
+        }
+            </pre>
+        </li>
+        <li>Подключить библиотеку или передать переменную в javascript
+            <pre>
+            <span class="implements">/**
+             * Implements hook_page_attachments_alter()
+             */</span>
+            function naturetour_page_attachments_alter(array &$attachments){
+
+                $attachments['#attached']['drupalSettings']['your_variable'] = 'item';
+
+            }
+            </pre>
+        </li>
+    </ol>
+</body>
+</html>

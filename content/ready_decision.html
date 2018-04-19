@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Готовые решение</h1>
+    <ol>
+        <li>
+            <h4>Получить блок в переменную и передать в шаблон</h4>
+            <pre>
+                $block = \Drupal\block\Entity\Block::load('block_mashine_name');
+                $variables['block_mashine_name'] = \Drupal::entityTypeManager()
+                ->getViewBuilder('block')
+                ->view($block);
+            </pre>
+        </li>
+        <li>
+            <h4>Получить ноду в переменную</h4>
+            <pre>
+                $node = Drupal\node\Entity\Node::load(27);
+            </pre>
+        </li>
+        <li>
+            <h4>Получить текущую ноду в переменную</h4>
+            <pre>
+                $node = \Drupal::routeMatch()->getParameter('node');
+            </pre>
+        </li>
+        <li>
+            <h4>Проверка на случай если переменная $node является объектом NodeInterface</h4>
+            <pre>
+                if ($node instanceof \Drupal\node\NodeInterface){}
+            </pre>
+        </li>
+        <li>
+            <h4>Получить id текущей ноды</h4>
+            <pre>
+                $nid = $node->id();
+            </pre>
+        </li>
+        <li>
+            <h4>Получить тип текущей ноды</h4>
+            <pre>
+                $ntype = $node->getType();
+            </pre>
+        </li>
+        <li>
+            <h4>Получить значение поля 'field_something' текущей ноди</h4>
+            <pre>
+                $field_something = $node->get('$field_something')->getValue();
+            </pre>
+        </li>
+        <li>
+            <h4>Получить путь к логотипу</h4>
+            <pre>
+                global $base_url, $base_path;
+                $variables['my_logo'] = $base_url . $base_path . drupal_get_path('theme','naturetour') . '/images/logo.png';
+            </pre>
+        </li>
+        <li>
+            <h4>Сделать редирект на другую страницу</h4>
+            <pre>
+                $response = new Symfony\Component\HttpFoundation\RedirectResponse('/node/3');
+                $response->send();
+            </pre>
+        </li>
+        <li>
+            <h4>Получить текущий ip адрес</h4>
+            <pre>
+                $variables['page']['ip'] = \Drupal::request()->getClientIp();
+            </pre>
+        </li>
+        <li>
+            <h4>Получить текущий язык</h4>
+            <pre>
+                $langName =  \Drupal::languageManager()->getCurrentLanguage()->getName();
+                $langCode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+            </pre>
+        </li>
+        <li>
+            <h4>Получить в переменную созданную форму</h4>
+            <pre>
+                $form = \Drupal::formBuilder()->getForm('Drupal\mymodule\Form\MyModuleForm');
+            </pre>
+        </li>
+        <li>
+            <h4>Узнать текущий view</h4>
+            <pre>
+                 $route = \Drupal::routeMatch()->getRouteObject();
+				  if ($route) {
+					$view_id = $route->getDefault('view_id');
+					$display_id = $route->getDefault('display_id');
+					$view = Drupal\views\Views::getView($view_id);
+				  }
+            </pre>
+        </li>
+        <li>
+            <h4>Получить текущий view</h4>
+            <pre>
+                код выше +
+				$view = Drupal\views\Views::getView($view_id);
+				
+            </pre>
+        </li>
+    </ol>
+
+</body>
+</html>

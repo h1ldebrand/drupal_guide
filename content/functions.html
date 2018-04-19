@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Конспект по Drupal 8</title>
+</head>
+<body>
+<h1>Конспект по Drupal 8</h1>
+<h3>Список полезных функций и методов</h3>
+<ol>
+    <li>
+        <h4>Url путь к файлам верстки:</h4>
+        <pre>file_url(directory ~ '/img/manes-logo.svg')</pre>
+    </li>
+    <li>
+		<pre>
+			{%  for field_value in node.field_img %}
+				<div class="imgclass__item">
+					<a class="imgclass__link" href="{{file_url(field_value.entity.fileuri)}}" rel="img-gallery">
+						<img src="{{file_url(field_value.entity.fileuri)}}">
+					</a>
+				</div>
+			{% endfor %}
+		</pre>
+    </li>
+    <li>
+		<pre>
+			<img src="{{file_url(node.field_album_preview.entity.fileuri | image_style('412x258'))}}">
+		</pre>
+    </li>
+    <li>
+		<pre>
+			{%  for field_value in node.field_img %}
+				{{ path('entity.node.canonical', {'node': 42}) }}
+			{% endfor %}
+		</pre>
+    </li>
+</ol>
+</body>
+</html>

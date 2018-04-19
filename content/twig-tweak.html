@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Конспект по Drupal 8</title>
+</head>
+<body>
+<h1>Конспект по Drupal 8</h1>
+<h3>Список методов модуля Twig Tweak</h3>
+<ol class="examples">
+    <li>
+        <h4>Внедрение view в шаблон</h4>
+        <pre>{{ drupal_view('who_s_new', 'block_1') }}</pre>
+    </li>
+    <li>
+        <h4>Внедрение блока в шаблон</h4>
+        <pre>{{ drupal_block('system_powered_by_block') }}</pre>
+    </li>
+    <li>
+        <h4>Внедрение региона в шаблон</h4>
+        <pre>{{ drupal_region('sidebar_first') }}</pre>
+    </li>
+    <li>
+        <h4>Внедрение tokena в шаблон</h4>
+        <pre>{{ drupal_token('node:title', {node: node}) }}</pre>
+    </li>
+    <li>
+        <h4>Внедрение tokena в шаблон</h4>
+        <pre>{{ drupal_token('site:name') }}</pre>
+    </li>
+    <li>
+        <h4>Внедрение tokena в шаблон</h4>
+        <pre>{{ drupal_config('site:name') }}</pre>
+    </li>
+    <li>
+        <h4>Внедрение tokena в шаблон</h4>
+        <pre>{{ drupal_config('site:name') }}</pre>
+    </li>
+    <li>
+        <h4>Внедрение системных настроек сайта в шаблон</h4>
+        <pre>{{ drupal_config('system.site', 'name') }}</pre>
+    </li>
+    <li>
+        <h4>Внедрение entity в шаблон</h4>
+        <pre>{{ drupal_entity('node', 5, 'teaser') }}</pre>
+    </li>
+    <li>
+        <h4>Внедрение меню в шаблон не создавая блок</h4>
+        <pre>{{ drupal_menu('main') }}</pre>
+    </li>
+    <li>
+        <h4>Внедрение любого поля в любой шаблон</h4>
+        <pre>{{ drupal_field('field_image', 'node', 1) }}</pre>
+    </li>
+    <li>
+        <h4>Заголовок страниці</h4>
+        <pre>{{ drupal_title() }}</pre>
+    </li>
+    <li>
+        <h4>Ссылка на страницу</h4>
+        <pre>{{ drupal_url('node/5', {absolute: true}) }}</pre>
+    </li>
+    <!--
+        {# Слэш должен быть экранирован. #}
+        <dt>Form:</dt>
+        <dd>{{ drupal_form('Drupal\\search\\Form\\SearchBlockForm') }}</dd>
+
+
+        {# Это работает, даже если режим отладки Twig отключен. #}
+        <dt>Dump variable:</dt>
+        <dd>{{ drupal_dump(var) }}</dd>
+
+        {# То же, что и раньше, но короче. #}
+        <dt>Dump variable (alias):</dt>
+        <dd>{{ dd(var) }}</dd>
+
+        {# This may break cacheability. #}
+        <dt>Set status message:</dt>
+        <dd>{{ drupal_set_message('Hello world!') }}</dd>
+
+        {# Приветствую старого друга! #}
+        <dt>PHP filter:</dt>
+        <dd class="bad-practice">© {{ 'return date("Y");'|php }}</dd>
+
+        {# Заменяйте сразу несколько токенов. #}
+        <dt>Token replace:</dt>
+        <dd>{{ '<h1>[site:name]</h1><div>[site:slogan]</div>'|token_replace }}</dd>
+
+        {# Самый простой способ изменить их выход. #}
+        <dt>Preg replace:</dt>
+        <dd>{{ 'Drupal - community plumbing!'|preg_replace('/(Drupal)/', '<b>$1</b>') }}</dd>
+
+        {# Фильтр обрабатывает либо путь, либо URI для исходного изображения. #}
+        <dt>Image style:</dt>
+        <dd>{{ 'public://images/ocean.jpg'|image_style('thumbnail') }}</dd>
+
+        {# Язык ввода может передаваться через аргументы. #}
+        <dt>Transliteration:</dt>
+        <dd>{{ 'Привет!'|transliterate }}</dd>
+
+        {# Проверьте доступные форматы ввода на странице admin / config / content / formats. #}
+        <dt>Check markup:</dt>
+        <dd>{{ '<b>bold</b> <strong>strong</strong>'|check_markup('restricted_html') }}</dd>
+    -->1
+    </ol>
+    </body>
+    </html>

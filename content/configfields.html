@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Свое поле в разделе Конфигурации</title>
+    <style>
+        .comment{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Свое поле в разделе Конфигурации, Основные настройки сайта</h1>
+    <div>
+        <pre>
+    <span class="comment">/**
+     * @file
+     * Custom module that alter forms.
+     */</span>
+    
+    use Drupal\Core\Form\FormStateInterface;
+    
+    <span class="comment">/**
+     * Implements hook_form_FORM_ID_alter().
+     */</span>
+    
+    function configfields_form_system_site_information_settings_alter(&$form, FormStateInterface $form_state){
+    
+        $form['site_information']['something_field'] = array(
+            '#type' => 'textfield',
+            '#title' => 'Текстовое поле',
+            '#description' => 'Заполните пожалуйста текстовое поле каким нибудь значением',
+            '#default_value' => Drupal::config('system.site')->get('something_field'),
+        );
+    
+        $form['#submit'][] = 'configfields_form_system_site_information_field_submit';
+    }
+    
+    <span class="comment">/**
+     * Form callback to save fields
+     * @param array $form
+     * @param FormStateInterface $form_state
+     */</span>
+    
+    function configfields_form_system_site_information_field_submit(array &$form, FormStateInterface $form_state){
+        $config = Drupal::configFactory()->getEditable('system.site');
+        $config->set('something_field', $form_state->getValue('something_field'))->save();
+    
+    }
+        </pre>
+    </div>
+</body>
+</html>
