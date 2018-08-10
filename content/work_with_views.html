@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Работа Views</title>
+</head>
+<body>
+    <h1>Работа Views</h1>
+    <ol>
+        <li>
+            <h4>Узнать текущий view</h4>
+            <pre>
+                 $route = \Drupal::routeMatch()->getRouteObject();
+				  if ($route) {
+					$view_id = $route->getDefault('view_id');
+					$display_id = $route->getDefault('display_id');
+					$view = Drupal\views\Views::getView($view_id);
+				  }
+            </pre>
+        </li>
+        <li>
+            <h4>Получить значение поля из view</h4>
+            <pre>
+                &lt;div&gt;{{row.content['#row']._entity.field_name[0].value}}&lt;/div&gt;
+            </pre>
+        </li>
+        <li>
+            <h4>Получить поле картинки из view</h4>
+            <pre>
+                &lt;img class="your_class" src="{{ file_url(row.content['#row']._entity.field_image[0].entity.uri.value) }}" alt=""&gt;
+            </pre>
+        </li>
+    </ol>
+
+</body>
+</html>

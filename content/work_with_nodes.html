@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Работа с Node</title>
+</head>
+<body>
+    <h1>Работа с Node</h1>
+    <ol>
+        <li>
+            <h4>Получить ноду в переменную</h4>
+            <pre>
+                $node = Drupal\node\Entity\Node::load(27);
+            </pre>
+        </li>
+        <li>
+            <h4>Получить текущую ноду в переменную</h4>
+            <pre>
+                $node = \Drupal::routeMatch()->getParameter('node');
+            </pre>
+        </li>
+        <li>
+            <h4>Проверка на случай если переменная $node является объектом NodeInterface</h4>
+            <pre>
+                if ($node instanceof \Drupal\node\NodeInterface){}
+            </pre>
+        </li>
+        <li>
+            <h4>Получить id текущей ноды</h4>
+            <pre>
+                $nid = $node->id();
+            </pre>
+        </li>
+        <li>
+            <h4>Получить тип текущей ноды</h4>
+            <pre>
+                $ntype = $node->getType();
+            </pre>
+        </li>
+        <li>
+            <h4>Получить значение поля 'field_something' текущей ноди</h4>
+            <pre>
+                $field_something = $node->get('$field_something')->getValue();
+            </pre>
+        </li>
+        <li>
+            <h4>Получить ноду по url</h4>
+            <pre>
+                $path = \Drupal::service('path.alias_manager')->getPathByAlias('/contacts');
+				if(preg_match('/node\/(\d+)/', $path, $matches)) {
+					$node = \Drupal\node\Entity\Node::load($matches[1]);
+					$variables['node_bind'] = $node;
+				}
+            </pre>
+        </li>
+    </ol>
+
+</body>
+</html>
